@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Làm bài kiểm tra Sinh học</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
+<style>
+body{
+font-family:Arial;
+background:#eef2ff;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+}
+
+.question{
+margin-top:20px;
+}
+
+button{
+padding:10px 20px;
+margin-top:20px;
+font-size:16px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Bài kiểm tra Sinh học</h1>
+
+<input type="file" id="fileInput">
+
+<div id="quiz"></div>
+
+</div>
+
+<script>
+
+document.getElementById("fileInput").addEventListener("change", function(event){
+
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+mammoth.convertToHtml({arrayBuffer: event.target.result})
+.then(function(result){
+
+document.getElementById("quiz").innerHTML = result.value;
+
+});
+
+};
+
+reader.readAsArrayBuffer(event.target.files[0]);
+
+});
+
+</script>
+
+</body>
+</html>
